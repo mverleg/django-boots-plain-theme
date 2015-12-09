@@ -1,11 +1,8 @@
 
-from django.utils.safestring import SafeData
-from bs4 import BeautifulSoup, Comment, NavigableString
 try:
 	from urllib.parse import urlparse
 except ImportError:
 	from urlparse import urlparse
-from re import sub, IGNORECASE
 from django.conf import settings
 
 
@@ -14,36 +11,6 @@ DEFAULT_NOSCR_ALLOWED_TAGS = 'strong:title b i em:title p:title h1:title h2:titl
 	'table:cellspacing:cellpadding thead tbody th tr td:title:colspan:rowspan br'
 
 
-def single_escape(text):
-	# DEPRECATED: BEAUTIFULSOUP DOES ESCAPING OF <, >, & ALREADY
-	"""
-		Escapes HTML special characters if not already SafeDate,
-		but attempts to skip those that have already been escaped;
-	"""
-	if isinstance(text, SafeData):
-		return text
-	text = sub(r'&(?!amp|lt|gt|quot|#39)', r'&amp;', text, flags = IGNORECASE)
-	return text.replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace("'", '&#39;')
-
-
-def _escape_child_strings(tag, soup):
-	# DEPRECATED: BEAUTIFULSOUP DOES ESCAPING OF <, >, & ALREADY
-	"""
-		Used by sanitize_html.
-
-		Takes a soup and finds all direct descendant text nodes, replacing each of them with an escaped version.
-
-		Returns soup, but substitution also happens in-place.
-	"""
-	for child in tag.children:
-		if isinstance(child, NavigableString):
-			clean_text = single_escape(str(child))
-			child.replace_with(soup.new_string(clean_text))
-		return tag
-
-
-#todo: turn caching back on (broken now)
-#@settings.mem_cache
 def sanitize_html(text, add_nofollow = False,
 		allowed_tags = getattr(settings, 'NOSCR_ALLOWED_TAGS', DEFAULT_NOSCR_ALLOWED_TAGS)):
 	"""
@@ -65,6 +32,10 @@ def sanitize_html(text, add_nofollow = False,
 
 		This is based on https://djangosnippets.org/snippets/1655/
 	"""
+	try:
+		from bs4 import BeautifulSoup, Comment, NavigableString
+	except ImportError:
+		raise ImportError('to use sanitize_html() and |noscr, you need to install beautifulsoup4')
 
 	""" function to check if urls are absolute
 		note that example.com/path/file.html is relative, officially and in Firefox """
@@ -90,17 +61,10 @@ def sanitize_html(text, add_nofollow = False,
 		else:
 			""" whitelisted tags """
 			tag.attrs = {attr: val for attr, val in tag.attrs.items() if attr in allowed_tags[tag.name]}
-			#""" remove javascript from tags """
-			#tag.attrs = {attr: js_regex.sub('', val) for attr, val in tag.attrs.items()}
-		#""" escape string children """
-		#_escape_child_strings(tag, soup)
 		""" add nofollow to external links if requested """
 		if add_nofollow and tag.name == 'a' and 'href' in tag.attrs:
 			if not is_relative(tag.attrs['href']):
 				tag.attrs['rel'] = (tag.attrs['rel'] if 'rel' in tag.attrs else []) + ['nofollow']
-
-	#""" escape soup for top-level string nodes """
-	#_escape_child_strings(soup, soup)
 
 	""" return as unicode """
 	return soup.renderContents().decode('utf8')
