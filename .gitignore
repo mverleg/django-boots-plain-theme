@@ -1,0 +1,7 @@
+*.pyc
+*~
+.idea/
+/env/
+*.egg-info
+/dist/
+/.pypirc
