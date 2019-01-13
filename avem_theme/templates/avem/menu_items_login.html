@@ -21,15 +21,15 @@
 	<div class="form-group">
 		<div class="btn-group btn-group-justified" role="group">
 			<div class="btn-group" role="group">
-				<button id="login_or_register_form_button_register" type="submit" name="action"
-				        value="register" class="btn btn-default" formaction="{% url 'account_signup' %}">
-					Register
-				</button>
-			</div>
-			<div class="btn-group" role="group">
 				<button id="login_or_register_form_button_login" type="submit" name="action"
 				        value="login" class="btn btn-primary" formaction="{% url 'account_login' %}">
 					Login
+				</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button id="login_or_register_form_button_register" type="submit" name="action"
+				        value="register" class="btn btn-default" formaction="{% url 'account_signup' %}">
+					Register
 				</button>
 			</div>
 		</div>
