@@ -37,13 +37,13 @@
 </form>
 
 <script>
-	$(document).ready(function(event) {
+	(function() {
         var form = document.getElementById("login_or_register_form");
-        $("#login_or_register_form_button_login").click(function (k, elem) {
-	        form.action = "{% url 'account_login' %}";
-        });
-        $("#login_or_register_form_button_register").click(function (k, elem) {
-	        form.action = "{% url 'account_signup' %}";
-        });
-	});
+        document.getElementById("login_or_register_form_button_login").onclick = function (k, elem) {
+            form.action = "{% url 'account_login' %}";
+        };
+        document.getElementById("login_or_register_form_button_register").onclick = function (k, elem) {
+            form.action = "{% url 'account_signup' %}";
+        };
+    })();
 </script>

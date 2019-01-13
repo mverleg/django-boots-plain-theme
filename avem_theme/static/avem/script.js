@@ -124,10 +124,8 @@ $(document).ready(function()
 		},
 		afterSelect: function (element)
 		{
-			console.log('selected', element);
 			if (element.url)
 			{
-				console.log('redirect', element.url);
 				window.location.href = element.url;
 			}
 		},
