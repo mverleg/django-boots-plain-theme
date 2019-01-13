@@ -1,7 +1,7 @@
 
 {% load ext %}
 
-<form id="login_or_register_form" class="form" method="POST">
+<form id="login_or_register_form" class="form" method="POST" action="{% url 'account_login' %}">
 	<div class="form-group">
 		<div class="input-group">
 			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

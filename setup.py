@@ -16,7 +16,7 @@ setup(
 	author_email='mdilligaf@gmail.com',
 	license='Revised BSD License (LICENSE.txt)',
 	keywords=['django', 'bootstrap'],
-	version='1.3.0',
+	version='1.3.1',
 	packages=['avem_theme'],
 	include_package_data=True,
 	zip_safe=False,
