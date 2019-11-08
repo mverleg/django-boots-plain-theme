@@ -35,7 +35,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<button type="button" id="menubar-toggle-collapse" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu_general" aria-expanded="false">
+				<button type="button" id="menubar-toggle-collapse" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu_list" aria-expanded="false">
 					<span class="sr-only">Toggle menu</span>
 					<i class="glyphicon glyphicon-chevron-down collapse-button-icon-collapsed"></i>
 					<i class="glyphicon glyphicon-chevron-up collapse-button-icon-opened"></i>
@@ -48,7 +48,7 @@
 					<a class="navbar-brand" href="{% url 'home' %}"><i class="glyphicon glyphicon-home"></i> {% block brand_name %}markv{% endblock brand_name %}</a>
 				{% endblock menu_home %}
 			</div>
-			<ul class="nav navbar-nav">
+			<ul id="menu_list" class="nav navbar-nav navbar-collapse collapse">
 				{% block menu %}
 				{% endblock menu %}
 			</ul>
