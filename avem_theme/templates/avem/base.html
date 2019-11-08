@@ -47,11 +47,11 @@
 				{% block menu_home %}
 					<a class="navbar-brand" href="{% url 'home' %}"><i class="glyphicon glyphicon-home"></i> {% block brand_name %}markv{% endblock brand_name %}</a>
 				{% endblock menu_home %}
-				<ul class="nav navbar-nav">
-					{% block menu %}
-					{% endblock menu %}
-				</ul>
 			</div>
+			<ul class="nav navbar-nav">
+				{% block menu %}
+				{% endblock menu %}
+			</ul>
 
 			{% include 'avem/menu_right.html' %}
 		</div>

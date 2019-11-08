@@ -71,6 +71,7 @@
 				</ol>
 			{% endblock main_menu %}
 		</div>
+
 		<div id="body_inside">
 			<div id='page' {% block page_attr %}{% endblock page_attr %}>
 				<div id='content' {% block content_attr %}{% endblock content_attr %}>
@@ -97,7 +98,7 @@
 
 		<section id='footer_area' {% block footer_area_attr %}{% endblock footer_area_attr %}>
 			<footer id='footer' {% block footer_attr %}{% endblock footer_attr %}>
-				<div id='name' {% block name_attr %}{% endblock name_attr %}>
+				<div id='footer_name' {% block name_attr %}{% endblock name_attr %}>
 					{% block page_name %}{{ TITLE_BASE }}{% endblock page_name %}
 				</div>
 				<ul {% block footer_list_attr %}{% endblock footer_list_attr %}>
