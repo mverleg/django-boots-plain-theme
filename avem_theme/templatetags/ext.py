@@ -1,16 +1,18 @@
 
+from json import dumps
 from math import ceil
-from django.contrib.staticfiles import finders
-from django.core.serializers.json import DjangoJSONEncoder
-from django.core.urlresolvers import reverse
-from django.utils.html import mark_safe
-from django import template
-from django.utils.timesince import timesince
 from os.path import getmtime
 from random import random
-from json import dumps
-from avem_theme.functions.list_sample import list_sample
+
+from django import template
+from django.contrib.staticfiles import finders
+from django.core.serializers.json import DjangoJSONEncoder
+from django.urls import reverse
+from django.utils.html import mark_safe
+from django.utils.timesince import timesince
+
 from avem_theme.functions.hashing import float_b64
+from avem_theme.functions.list_sample import list_sample
 from avem_theme.functions.sanitize import sanitize_html
 
 register = template.Library()

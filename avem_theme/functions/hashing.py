@@ -1,6 +1,6 @@
 
-from base64 import b64encode
 import hashlib
+from base64 import b64encode
 from struct import pack
 
 
