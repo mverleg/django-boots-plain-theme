@@ -1,5 +1,5 @@
 
-{% load static from staticfiles %}
+{% load static from static %}
 
 {#{% block site_js %}#}
 {#	<script src="{% static 'script.js' %}"></script>#}
@@ -53,7 +53,7 @@
 				<li class="form-group">
 					<form action="{% url 'search' %}" method="GET" title="cltr+H">
 						<div class="input-group">
-							<input class="search_field" type="text" name="q" class="form-control search-typeahead" placeholder="Search" autocomplete="off">
+							<input type="text" name="q" class="search_field form-control search-typeahead" placeholder="Search" autocomplete="off">
 							<div class="input-group-btn" >
 								<label class="btn btn-default" for="search_submit_dropdown">
 									<i class="glyphicon glyphicon-search"></i>
@@ -83,8 +83,8 @@
 		<div id="menu-search-mainbar" class="nav navbar-form navbar-right">
 			<form class="form-inline" role="search" action="{% url 'search' %}" method="GET" title="cltr+H">
 				<div class="form-group">
-					<div class="input-group">
-						<input class="search_field" type="text" name="q" class="form-control search-typeahead" value="{{ query }}" placeholder="Search" {% block menu_autofocus %}autofocus{% endblock menu_autofocus %} data-provide="typeahead" autocomplete="off">
+					<div class="input-group" role="group">
+						<input class="search_field form-control search-typeahead" type="text" name="q" value="{{ query }}" placeholder="Search" {% block menu_autofocus %}autofocus{% endblock menu_autofocus %} data-provide="typeahead" autocomplete="off">
 						<div class="input-group-btn" onclick="">
 							<label class="btn btn-default" for="search_submit_bar">
 								<i class="glyphicon glyphicon-search"></i>
